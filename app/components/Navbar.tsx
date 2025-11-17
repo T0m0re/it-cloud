@@ -57,10 +57,10 @@ const MenuBar = () => {
                     Managed IT 
                 </MenubarItem>
                 <MenubarItem>
-                    Managed IT 
+                    IT Process Automation
                 </MenubarItem>
                 <MenubarSeparator />
-                <MenubarItem disabled>Self AI Integration           <MenubarShortcut className="text-blue-700 border/50 p-[3px] bg-blue-500/20 f">Coming soon</MenubarShortcut>
+                <MenubarItem disabled>Self AI Integration<MenubarShortcut className="text-blue-700 border/50 p-[3px] bg-blue-500/20 f">Coming soon</MenubarShortcut>
                 </MenubarItem>
             </MenubarContent>
         </MenubarMenu>

@@ -5,12 +5,13 @@ import Navbar from "~/components/Navbar"
 import { useScreenWidth } from "~/lib/utils"
 
 const Layout = () => {
+
     const width = useScreenWidth()
   return (
-    <main className="relative">
+    <main>
         {width > 768 
         ? <Navbar/>
-          : <MobileNavbar/>
+          : <MobileNavbar />
       }
         
         <BorderContainer>
