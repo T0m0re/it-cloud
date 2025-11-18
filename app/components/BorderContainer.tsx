@@ -7,7 +7,7 @@ interface BorderContainerProps {
 
 const BorderContainer = ({ children, className }: BorderContainerProps) => {
   return (
-    <main className={`mx-auto max-w-9/10 border-r border-l border-white ${className}`}>
+    <main className={`mx-auto max-w-9/10 border-r-[0.5px] border-l-[0.5px] border-white/50 ${className}`}>
         {children}
     </main>
   )

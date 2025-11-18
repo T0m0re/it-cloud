@@ -131,3 +131,35 @@ color: white;
     @apply bg-background text-foreground;
   }
 }
+
+@layer utilities {
+  .carousel::-webkit-scrollbar {
+    display: none;
+  }
+
+  .groups{
+    animation: rolling 15s infinite linear;
+  }
+
+  @keyframes rolling {
+    from {translate: 0;}
+    to {translate: -100%;}
+  }
+
+   .mask-edge-fade {
+    mask-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0) 0%,
+      rgb(0, 0, 0) 12.5%,
+      rgb(0, 0, 0) 87.5%,
+      rgba(0, 0, 0, 0) 100%
+    );
+    -webkit-mask-image: linear-gradient(
+      to right,
+      rgba(0, 0, 0, 0) 0%,
+      rgb(0, 0, 0) 12.5%,
+      rgb(0, 0, 0) 87.5%,
+      rgba(0, 0, 0, 0) 100%
+    );
+  }
+}
