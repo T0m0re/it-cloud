@@ -1,19 +1,27 @@
-import type { Route } from "../+types/root";
 import Hero from "~/components/Hero";
+import FeatureGrid from "~/components/FeatureGrid";
+import Footer from "~/components/Footer";
+import type { Route } from "./+types/home";
+import WhyChooseUs from "~/components/WhyChooseUs";
+import Services from "~/components/Services";
+import Testimonials from "~/components/Testimonials";
 
-export function meta({}: Route.MetaArgs) {
+export function meta({ }: Route.MetaArgs) {
   return [
-    { title: "Nimbus IT Solutions" },
-    { name: "description", content: "Reliable cloud, network & security services for growing businesses." },
+    { title: "Cinefy - AI Video Editing" },
+    { name: "description", content: "AI-Powered Video Editing in Your Browser" },
   ];
 }
 
 export default function Home() {
   return (
     <main>
-      <section id="hero">
-        <Hero/>
-      </section>
+      <Hero />
+      <FeatureGrid />
+      <Services />
+      <WhyChooseUs />
+      <Testimonials />
+      <Footer />
     </main>
   );
 }

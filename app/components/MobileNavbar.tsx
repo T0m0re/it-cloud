@@ -1,121 +1,76 @@
-import { useEffect, useState } from "react"
-import BorderContainer from "./BorderContainer"
-import { Button } from "./ui/button"
-import { cn } from "~/lib/utils"
-import { Link } from "react-router"
-import { ChevronDown } from "lucide-react"
+import { useEffect, useState } from "react";
+import { Button } from "./ui/button";
+import { cn } from "~/lib/utils";
+import { Link } from "react-router";
+import { Menu, X } from "lucide-react";
 
 const MobileNavbar = () => {
-const [menuOpen, setMenuOpen] = useState(false)
+    const [menuOpen, setMenuOpen] = useState(false);
+
     useEffect(() => {
-  if (menuOpen) {
-    document.body.classList.add("overflow-hidden");
-  } else {
-    document.body.classList.remove("overflow-hidden");
-  }
-}, [menuOpen]);
-  return (
-    <>
-    <nav className={cn("sticky top-0 z-15 bg-black w-full", menuOpen && "hidden")}>
-        <div className="mx-auto max-w-9/10 flex items-center justify-between py-4">
-            <div className="w-[60px]">
-                <img src="/Logo.svg" alt="logo" className="w-full"/>
-            </div>
+        if (menuOpen) {
+            document.body.classList.add("overflow-hidden");
+        } else {
+            document.body.classList.remove("overflow-hidden");
+        }
+    }, [menuOpen]);
 
-            <div className="flex items-center gap-5">
-                <Button className="text-black font-semibold bg-white cursor-pointer hover:bg-white/80 rounded-xs transition-all">
-                    Sign in
-                </Button>
+    return (
+        <>
+            <nav className={cn("sticky top-0 z-50 w-full bg-background/80 backdrop-blur-md border-b border-border/50 transition-all", menuOpen && "bg-background")}>
+                <div className="container mx-auto px-4 flex items-center justify-between py-4">
+                    <div className="flex items-center gap-2">
+                        <MobileNavLink to="/" onClick={() => setMenuOpen(false)}>
+                            <span className="font-serif font-bold text-xl tracking-tight">Nimbus IT</span>
+                        </MobileNavLink>
+                    </div>
 
-                <div className="w-7 flex flex-col items-end-safe justify-between gap-2 py-1 cursor-pointer group" onClick={()=>setMenuOpen(true)}>
-                    <div className="w-full h-0.5 bg-white rounded-lg group-hover:bg-white/70"/>
-                    <div className="w-full h-0.5 bg-white rounded-lg group-hover:bg-white/70"/>
-                    <div className="w-full h-0.5 bg-white rounded-lg group-hover:bg-white/70"/>
+                    <button
+                        className="p-2 text-foreground hover:bg-muted rounded-md transition-colors"
+                        onClick={() => setMenuOpen(!menuOpen)}
+                    >
+                        {menuOpen ? <X size={24} /> : <Menu size={24} />}
+                    </button>
                 </div>
-            </div>
-        </div>
-    </nav>
-    {menuOpen && <NavItems setMenuOpen={setMenuOpen}/>}
-    </>
-  )
-}
-export default MobileNavbar
+            </nav>
 
-const NavItems = ({setMenuOpen} : {setMenuOpen: (value: boolean) => void}) => {
-    const [dropDownOpen, setDropDownOpen] = useState(false)
-    return(
-        <nav className="w-full h-dvh left-0 right-0 bg-black z-10 overflow-hidden">
-            <BorderContainer className="h-full">
-                <div className="flex flex-col items-start gap-6 pt-6 px-2">
-                    <div className="flex items-center justify-between w-full">
-                        <div className="w-20">
-                            <img src="/Logo.svg" alt="logo" className="w-full"/>
+            {/* Mobile Menu Overlay */}
+            {menuOpen && (
+                <div className="fixed inset-0 top-[73px] z-40 bg-background/95 backdrop-blur-xl animate-in slide-in-from-top-5 duration-200">
+                    <div className="container mx-auto px-4 py-8 flex flex-col gap-6 h-full overflow-y-auto pb-20">
+                        <div className="flex flex-col gap-2">
+                            <MobileNavLink to="/" onClick={() => setMenuOpen(false)}>Overview</MobileNavLink>
+                            <MobileNavLink to="/services" onClick={() => setMenuOpen(false)}>Services</MobileNavLink>
+                            <MobileNavLink to="/case-studies" onClick={() => setMenuOpen(false)}>Case Studies</MobileNavLink>
+                            <MobileNavLink to="/pricing" onClick={() => setMenuOpen(false)}>Pricing</MobileNavLink>
+                            <MobileNavLink to="/about" onClick={() => setMenuOpen(false)}>About</MobileNavLink>
                         </div>
 
-                        <button className="w-7 flex flex-col items-center gap-4 cursor-pointer" onClick={()=>{setMenuOpen(false)}}>
-                            <div className="w-full h-0.5 bg-white rounded-lg group-hover:bg-white/70 rotate-45 translate-y-3"/>
-                            <div className="w-full h-0.5 bg-white rounded-lg group-hover:bg-white/70 -rotate-45 -translate-y-2"/>
-                        </button>
-                    </div>
+                        <div className="h-px bg-border/50 w-full my-2"></div>
 
-                    <div className="w-full px-0.5">
-                        <ul className="flex flex-col items-start justify-between gap-6">
-                            <li className="w-full border-b border-white/30 py-3 font-medium">
-                                <div className="inline-flex items-center gap-0.5 w-full cursor-pointer hover:text-white/60 transition-colors" onClick={()=>{setDropDownOpen(!dropDownOpen)}}>
-                                    <span>Services</span>
-                                    <ChevronDown className="pt-1"/>
-                                </div>
-
-                                {dropDownOpen && <div className="w-full px-2 my-4">
-                                    <ul className="w-full flex flex-col gap-4">
-                                        <li className="flex gap-1 items-center w-full hover:text-white/60 transition-colors">
-                                            <img src="/cloud-migration.svg" alt="icon" className="w-6"/>
-                                            <Link to="/" className="w-full">
-                                            <p className="w-fit">Cloud Migration</p>
-                                            </Link>
-                                        </li>
-                                        <li className="flex gap-1 items-center w-full hover:text-white/60 transition-colors">
-                                            <img src="/manged-It.svg" alt="icon" className="w-6"/>
-                                            <Link className="w-full" to="/">
-                                                <p className="w-fit">Managed IT</p>
-                                            </Link>
-                                        </li>
-                                        <li className="flex gap-1 items-center w-full hover:text-white/60 transition-colors">
-                                            <img src="/self-ai.svg" alt="icon" className="w-6"/>
-                                            <Link className="w-full" to="/">
-                                                <p className="w-fit">Self AI Integration</p>
-                                            </Link>
-                                        </li>
-                                    </ul>
-                                </div>}
-                            </li>
-                            <li className="w-full border-b border-white/30 py-3 font-medium hover:text-white/60 transition-colors">
-                                <Link to="/" className="w-full">About Us</Link>
-                            </li>
-                            <li className="w-full border-b border-white/30 py-3 font-medium hover:text-white/60 transition-colors">
-                                <Link to="/" className="w-full">Case Study</Link>
-                            </li>
-                            <li className="w-full border-b border-white/30 py-3 font-medium hover:text-white/60 transition-colors">
-                                <Link to="/" className="w-full">Blog</Link>
-                            </li>
-                        </ul>
-                    </div>
-
-                    <div className="flex items-center gap-3 justify-between w-full">
-                        <Button className="text-black font-semibold bg-white cursor-pointer hover:bg-white/80 rounded-xs transition-all px-6 flex-3">
-                            Sign In
-                        </Button>
-                        <div className="flex flex-1 justify-end">
-                            <Link to="/">
-                                 <img src="/linkedIn_icon.png" alt="linkedIn_icon" className="w-7 opacity-70 hover:opacity-100"/>
-                            </Link>
-                            <Link to="/">
-                                <img src="/x_icon.png" alt="X_icon" className="w-7 opacity-70 hover:opacity-100"/>
-                            </Link>
+                        <div className="flex flex-col gap-4">
+                            <Button className="w-full bg-primary text-primary-foreground hover:bg-primary/90 h-12 text-lg font-medium shadow-lg shadow-primary/20">
+                                Client Portal
+                            </Button>
+                            <p className="text-center text-sm text-muted-foreground">
+                                Need help? <a href="#" className="text-primary hover:underline">Contact Support</a>
+                            </p>
                         </div>
                     </div>
                 </div>
-            </BorderContainer>
-        </nav>
-    )
-}
+            )}
+        </>
+    );
+};
+
+const MobileNavLink = ({ to, children, onClick }: { to: string; children: React.ReactNode; onClick: () => void }) => (
+    <Link
+        to={to}
+        onClick={onClick}
+        className="text-2xl font-serif font-medium text-foreground/80 hover:text-foreground py-4 border-b border-border/30 hover:pl-2 transition-all"
+    >
+        {children}
+    </Link>
+);
+
+export default MobileNavbar;

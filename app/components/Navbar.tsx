@@ -1,84 +1,41 @@
-import { Link } from "react-router"
-import { Button } from "./ui/button"
-import {
-  Menubar,
-  MenubarContent,
-  MenubarItem,
-  MenubarMenu,
-  MenubarSeparator,
-  MenubarShortcut,
-  MenubarTrigger,
-} from "./ui/menubar"
-import { ChevronDown } from "lucide-react"
+import { Link } from "react-router";
+import { Button } from "./ui/button";
 
 const Navbar = () => {
-  return (
-    <nav className="w-full border-b border-white text-white font-sona sticky top-0 z-10 bg-black">
-        <div className="mx-auto max-w-9/10 flex items-center justify-between py-6">
-            <div className="flex items-center gap-6 xl:gap-18">
-                <div className="w-[100px] ">
-                    <img src="/Logo.svg" alt="logo" className="w-full"/>
+    return (
+        <nav className="w-full py-4 sticky top-0 z-50 bg-background/80 backdrop-blur-md border-b border-border/50">
+            <div className="container mx-auto px-4 flex items-center justify-between">
+                <div className="flex items-center gap-2">
+                    <NavLink to="/">
+                        <span className="font-serif font-bold text-xl tracking-tight">Nimbus IT</span>
+                    </NavLink>
                 </div>
-                <MenuBar/>
+
+                <div className="hidden md:flex items-center gap-1 p-1 bg-muted/50 rounded-full border border-border/50">
+                    <NavLink to="/services">Services</NavLink>
+                    <NavLink to="/case-studies">Case Studies</NavLink>
+                    <NavLink to="/pricing">Pricing</NavLink>
+                    <NavLink to="/about">About</NavLink>
+                    <NavLink to="/blog">Blog</NavLink>
+                </div>
+
+                <div className="flex items-center gap-4">
+                    <Button className="bg-primary text-primary-foreground hover:bg-primary/90 font-medium px-6 rounded-full shadow-lg shadow-primary/20 transition-all hover:shadow-primary/40 cursor-pointer">
+                        Client Portal
+                    </Button>
+                </div>
             </div>
+        </nav>
+    );
+};
 
-            <div className="flex items-center gap-4 lg:gap-8 justify-between">
+const NavLink = ({ to, children }: { to: string; children: React.ReactNode }) => (
+    <Link
+        to={to}
+        className="px-4 py-1.5 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors rounded-full hover:bg-background"
+    >
+        {children}
+    </Link>
+);
 
-            <Link to="/">
-                <img src="/linkedIn_icon.png" alt="linkedIn_icon" className="w-7 opacity-70 hover:opacity-100"/>
-            </Link>
-            <Link to="/">
-                <img src="/x_icon.png" alt="X_icon" className="w-7 opacity-70 hover:opacity-100"/>
-            </Link>
-                <Button className="text-black font-semibold bg-white cursor-pointer hover:bg-white/80 rounded-xs transition-all px-6">
-                    Sign in
-                </Button>
-            </div>
-        </div>
-       
-    </nav>
-  )
-}
-export default Navbar
-
-const MenuBar = () => {
-    return(
-        <Menubar>
-        <MenubarMenu>
-            <MenubarTrigger className="text-[16px] cursor-pointer flex items-center gap-0.5">
-                <p>Services</p> 
-                <ChevronDown className="size-5 mt-1"/>
-            </MenubarTrigger>
-            <MenubarContent className="flex flex-col gap-1 ">
-                <MenubarItem >
-                    Cloud Migration 
-                </MenubarItem>
-                <MenubarItem>
-                    Managed IT 
-                </MenubarItem>
-                <MenubarItem>
-                    IT Process Automation
-                </MenubarItem>
-                <MenubarSeparator />
-                <MenubarItem disabled>Self AI Integration<MenubarShortcut className="text-blue-700 border/50 p-[3px] bg-blue-500/20 f">Coming soon</MenubarShortcut>
-                </MenubarItem>
-            </MenubarContent>
-        </MenubarMenu>
-      <MenubarMenu>
-        <Link to="/about-us" className="text-nowrap font-medium hover:border hover:border-white/30 px-3 py-1 transition-all">
-            About Us
-        </Link>
-      </MenubarMenu>
-      <MenubarMenu>
-        <Link to="/about-us" className="text-nowrap font-medium hover:border hover:border-white/30 px-3 py-1 transition-all">
-            Case Studies
-        </Link>
-      </MenubarMenu>
-      <MenubarMenu>
-        <Link to="/about-us" className="font-medium hover:border hover:border-white/30 px-3 py-1 transition-all">
-            Blog
-        </Link>
-      </MenubarMenu>
-    </Menubar>
-    )
-}
+export default Navbar;
