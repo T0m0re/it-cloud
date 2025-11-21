@@ -8,7 +8,7 @@ import Testimonials from "~/components/Testimonials";
 
 export function meta({ }: Route.MetaArgs) {
   return [
-    { title: "Cinefy - AI Video Editing" },
+    { title: "IT" },
     { name: "description", content: "AI-Powered Video Editing in Your Browser" },
   ];
 }
