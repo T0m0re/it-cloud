@@ -7,4 +7,6 @@ export default [layout('routes/layout.tsx', [
     route('/case-studies', 'routes/case-studies.tsx'),
     route('/services', 'routes/services.tsx'),
     route('/blog', 'routes/blog.tsx'),
+    route('/blog/category/:slug', 'routes/category.tsx'),
+    route('/blog/:slug', 'routes/blogPage.tsx'),
 ])] satisfies RouteConfig;

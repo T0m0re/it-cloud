@@ -51,4 +51,8 @@ h6 {
       transform: translateX(-50%);
     }
   }
+
+  .scrollbar-x-none::-webkit-scrollbar{
+    display: none;
+  }
 }

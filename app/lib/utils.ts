@@ -25,20 +25,15 @@ export const useScreenWidth = () => {
 };
 
 /**
- * Format an ISO date string or Date object to `dd/mm/yyyy`.
- * Example: `2025-11-21T14:30:30.772Z` -> `21/11/2025`
- * @param input - ISO date string or Date instance
- * @returns Formatted date string or empty string for invalid input
+ * Format date to "Month Day, Year" format
+ * @param dateString - ISO date string (e.g., "2025-11-21T14:30:30.772Z")
+ * @returns Formatted date string (e.g., "November 21, 2025")
  */
-export function formatDate(input?: string | Date | null): string {
-  if (!input) return ""
-
-  const date = typeof input === "string" ? new Date(input) : input
-  if (Number.isNaN(date.getTime())) return ""
-
-  const day = String(date.getDate()).padStart(2, "0")
-  const month = String(date.getMonth() + 1).padStart(2, "0")
-  const year = date.getFullYear()
-
-  return `${day}-${month}-${year}`
+export function formatDate(dateString: string): string {
+  const date = new Date(dateString);
+  return date.toLocaleDateString("en-US", {
+    year: "numeric",
+    month: "long",
+    day: "numeric",
+  });
 }
