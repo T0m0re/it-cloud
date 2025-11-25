@@ -8,7 +8,7 @@ type SanityBlog = {
 
 const Blogs = ({posts}: SanityBlog) => {
   return (
-    <section className="my-8">
+    <section className="my-8 container mx-auto">
                 <ul className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
                         {posts.map((postDetails) => (
                             <li key={postDetails._id} className="shadow-2xl rounded-lg border border-muted">
@@ -18,8 +18,8 @@ const Blogs = ({posts}: SanityBlog) => {
                                         <h2 className="text-sm font-light">Author: <span className="font-semibold">{postDetails.author.name}</span></h2>
                                         <p className="text-xs font-medium">{formatDate(postDetails.publishedAt)}</p>
                                     </div>
-                                    <div className="relative w-full h-full">
-                                        <img src={postDetails.imageUrl} alt="blog texr" className="rounded-b-lg min-h-full object-cover"/>
+                                    <div className="relative w-full h-60">
+                                        <img src={postDetails.imageUrl} alt="blog texr" className="rounded-b-lg w-full h-full object-cover"/>
                                     </div>
                                 </Link>
                             </li>

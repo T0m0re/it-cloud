@@ -35,11 +35,14 @@ export const GET_SINGLE_POST = `
 
 export const GET_RELATED_POST =`
 *[
-  _type == "post"
-  && count(categories[slug.current in $slugs]) > 0
-]|order(publishedAt desc)[0...12]{
+  _type == "post" &&
+  count(categories[]->slug.current[@ in $slugs]) > 0 &&
+  slug.current != $currentSlug
+] | order(publishedAt desc)[0...12] {
   title,
   slug,
   "imageUrl": mainImage.asset->url,
+  categories[]->{title}
 }
+
 `

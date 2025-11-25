@@ -1,6 +1,5 @@
 
 import { GET_RELATED_POST, GET_SINGLE_POST } from "~/sanity/queries";
-import type { Route } from "./+types/blogPage";
 import { client } from "~/sanity/client";
 import type { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import imageUrlBuilder from "@sanity/image-url";
@@ -9,6 +8,7 @@ import { ChevronLeft } from "lucide-react";
 import { formatDate } from "~/lib/utils";
 import { PostBody } from "~/components/PostBody";
 import RelatedPosts from "~/components/RelatedPosts";
+import type { Route } from "./+types/categoryBlogPage";
 
 const { projectId, dataset } = client.config();
 const urlFor = (source: SanityImageSource) =>
@@ -18,15 +18,16 @@ const urlFor = (source: SanityImageSource) =>
 
 export async function loader({ params }: Route.LoaderArgs) {
     const currentSlug = params.slug;
-    console.log({params})
-    const posts = await client.fetch<SanityDocument>(GET_SINGLE_POST, params)
+    const posts = await client.fetch<SanityDocument>(GET_SINGLE_POST, {slug: currentSlug})
+    console.log({params, posts})
+    
     const categories = await posts.categories ?? [];
     const slugs = categories.map(cat => cat.slug.current)
     const relatedPosts = await client.fetch<SanityDocument>(GET_RELATED_POST, {slugs, currentSlug})
   return { posts, relatedPosts };
 }
 
-const BlogPage = ({loaderData}: Route.ComponentProps) => {
+const CategoryBlogPage = ({loaderData}: Route.ComponentProps) => {
     const {posts, relatedPosts} = loaderData;
     console.log({relatedPosts})
     const postImageUrl = posts.mainImage
@@ -61,4 +62,4 @@ const BlogPage = ({loaderData}: Route.ComponentProps) => {
     </main>
   )
 }
-export default BlogPage
+export default CategoryBlogPage

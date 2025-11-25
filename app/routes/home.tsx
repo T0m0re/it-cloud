@@ -8,8 +8,8 @@ import Testimonials from "~/components/Testimonials";
 
 export function meta({ }: Route.MetaArgs) {
   return [
-    { title: "IT" },
-    { name: "description", content: "AI-Powered Video Editing in Your Browser" },
+    { title: "Nimbus IT" },
+    { name: "description", content: "Reliable cloud, network & security services for growing businesses." },
   ];
 }
 
