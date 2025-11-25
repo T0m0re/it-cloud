@@ -21,7 +21,7 @@ const FeatureGrid = () => {
                 <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 h-[800px] md:h-[600px]">
                     {/* Large Card Left - Support */}
                     <div className="md:col-span-2 md:row-span-2 bg-muted/30 border border-border/50 rounded-2xl p-8 relative group overflow-hidden hover:border-primary/20 transition-colors">
-                        <div className="absolute inset-0 bg-grid-pattern opacity-[0.05]"></div>
+                        <div className="absolute inset-0 bg-grid-pattern opacity-10"></div>
                         <div className="relative z-10 h-full flex flex-col justify-between">
                             <div>
                                 <h3 className="text-xl font-medium mb-2">24/7 Dedicated Support</h3>
@@ -42,7 +42,7 @@ const FeatureGrid = () => {
                                     <div className="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-slate-100 text-sm max-w-[80%]">
                                         Hello! How can we assist you with your server today?
                                     </div>
-                                    <div className="bg-primary/10 p-3 rounded-lg rounded-tr-none text-sm max-w-[80%] ml-auto text-primary-foreground text-slate-900">
+                                    <div className="bg-primary/10 p-3 rounded-lg rounded-tr-none text-sm max-w-[80%] ml-auto text-slate-900">
                                         We're experiencing some latency on the main database.
                                     </div>
                                     <div className="bg-white p-3 rounded-lg rounded-tl-none shadow-sm border border-slate-100 text-sm max-w-[80%]">

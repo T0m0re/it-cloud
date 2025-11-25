@@ -1,10 +1,10 @@
 import { useEffect, useRef } from "react";
 
 const logos = [
-    { src: "/Automation=Default.svg", alt: "Automation" },
+    { src: "/Flash=Dark.svg", alt: "Automation" },
     { src: "/Blossom=Default.svg", alt: "Blossom" },
-    { src: "/Ebooks=Light.svg", alt: "Ebooks" },
-    { src: "/Leafe=Default.svg", alt: "Leafe" },
+    { src: "/Trace=Dark.svg", alt: "Ebooks" },
+    { src: "/Pinpoint=Dark.svg", alt: "Leafe" },
     { src: "/Minty=Default.svg", alt: "Minty" },
 ];
 

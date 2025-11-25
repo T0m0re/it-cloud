@@ -9,6 +9,8 @@ import { formatDate } from "~/lib/utils";
 import { PostBody } from "~/components/PostBody";
 import RelatedPosts from "~/components/RelatedPosts";
 import type { Route } from "./+types/categoryBlogPage";
+import { Link } from "react-router";
+import Footer from "~/components/Footer";
 
 const { projectId, dataset } = client.config();
 const urlFor = (source: SanityImageSource) =>
@@ -22,8 +24,8 @@ export async function loader({ params }: Route.LoaderArgs) {
     console.log({params, posts})
     
     const categories = await posts.categories ?? [];
-    const slugs = categories.map(cat => cat.slug.current)
-    const relatedPosts = await client.fetch<SanityDocument>(GET_RELATED_POST, {slugs, currentSlug})
+    const slugs = categories.map((cat : {slug: {current : string}}) => cat.slug.current)
+    const relatedPosts = await client.fetch(GET_RELATED_POST, {slugs, currentSlug})
   return { posts, relatedPosts };
 }
 
@@ -31,14 +33,19 @@ const CategoryBlogPage = ({loaderData}: Route.ComponentProps) => {
     const {posts, relatedPosts} = loaderData;
     console.log({relatedPosts})
     const postImageUrl = posts.mainImage
-    ? urlFor(posts.mainImage).width(750).height(310).url()
+    ? urlFor(posts.mainImage)
+        ? urlFor(posts.mainImage)!.width(750).height(310).url()
+        : null
     : null;
   return (
+    <>
     <main className="max-w-5xl mx-auto font-serif">
-            <button className="inline-flex items-center justify-between hover:bg-mute cursor-pointer bg-muted py-1 px-3 my-6">
+        <Link to={'/blog'}>
+            <button className="inline-flex items-center justify-between hover:bg-mute cursor-pointer bg-muted py-1 px-3 my-6" >
                 <ChevronLeft/>
                 <span className="font-medium text-sm">back to Blog</span>
             </button>
+        </Link>
         <section className="">
         <div className="flex flex-col items-start justify-between gap-2">
             <img src={postImageUrl!} alt="" className="w-full rounded-lg image-rendering-[pixelated]" width={800}/>
@@ -60,6 +67,8 @@ const CategoryBlogPage = ({loaderData}: Route.ComponentProps) => {
         </section>
         <RelatedPosts post={relatedPosts}/>
     </main>
+    <Footer/>
+    </>
   )
 }
 export default CategoryBlogPage

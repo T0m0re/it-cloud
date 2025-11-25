@@ -2,14 +2,14 @@ export const POST_CATEGORY_QUERY = `*[_type == "category"]`
 export const POSTS_QUERY = `*[
     _type == "post"
     && defined(slug.current)
-]|order(publishedAt desc)[0...12]
+]|order(publishedAt desc)[$start...$[start + postperPage]]
 {_id, title, author->{name}, slug, publishedAt, "imageUrl": mainImage.asset->url,}`;
 
 export const FILTERRED_POST_QUERY = `
 *[
   _type == "post" 
   && $slug in categories[]->slug.current
-]|order(publishedAt desc)[0...12]
+]|order(publishedAt desc)[$start...$[start + postperPage]]
 {
   _id,
   title,

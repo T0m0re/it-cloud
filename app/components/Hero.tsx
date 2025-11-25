@@ -122,7 +122,7 @@ const Hero = () => {
                         </div>
 
                         {/* Floating Panel 2 (Right) - Cloud Uptime */}
-                        <div className="absolute right-[5%] top-[10%] w-[30%] aspect-square bg-white rounded-lg shadow-xl border border-border/50 transform translate-z-40 rotate-y-[-15deg] rotate-x-12 hover:-translate-y-2 transition-all duration-500 delay-200 hidden md:block backdrop-blur-xl bg-white/90">
+                        <div className="absolute right-[5%] top-[10%] w-[30%] aspect-square rounded-lg shadow-xl border border-border/50 transform translate-z-40 rotate-y-[-15deg] rotate-x-12 hover:-translate-y-2 transition-all duration-500 delay-200 hidden md:block backdrop-blur-xl bg-white/90">
                             <div className="p-5 flex flex-col h-full justify-between">
                                 <div className="flex items-center justify-between">
                                     <div className="text-sm font-bold text-slate-700">Cloud Uptime</div>

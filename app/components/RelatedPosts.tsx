@@ -5,15 +5,13 @@ import { Link } from "react-router"
  interface RelatedPost {
     title: string
     imageUrl: string
-    categories: [
-        {title: string}
-    ]
+    categories: { title: string }[]
     slug: {
         current: string
         }
     }
 
-const RelatedPosts = ({post} : SanityDocument) => {
+const RelatedPosts = ({ post }: { post: RelatedPost[] }) => {
   return (
     <section className="my-20 border-t border-muted">
         <h3 className="text-4xl font-bold my-6">Read Related Posts</h3>
